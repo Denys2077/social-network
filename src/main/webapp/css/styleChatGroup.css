@@ -1,0 +1,886 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background-image: url('files/background.png');
+	background-size: cover;
+	background-position: center;	
+}
+
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 35px 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 99;
+	background: rgba(255, 255, 255, 0.2);
+	cursor: pointer;
+}
+
+.logo-chat {
+	font-size: 2em;
+	color: #fff;
+	user-select: none;
+}
+
+header img {
+	position: absolute;
+	top: 1%;
+	left: 35%;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+}
+
+header .name-status-container {
+	position: absolute;
+	top: 0;
+	width: 40%;
+	height: 100%;
+	margin: 0 0 0 40%;
+}
+
+.name-status-container h2 {
+	padding: 15px 5px 10px 5px;
+	font-size: 2em;
+	color: #fff;
+}
+
+.name-status-container span {
+	font-size: 1.3em;
+	color: #38BD3D;
+	font-weight: 700;
+	padding: 0 20px;
+}
+/* ----- Кнопка повернутися назад ----- */
+.back-wrapper {
+    position: fixed;
+    top: 6.5rem;
+    left: 4rem;
+    height: 100px;
+    width: 100px;
+}
+
+.back-wrapper .go-back {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 1px 1px 5px #6dacff;
+    backdrop-filter: blur(5px);
+}
+
+.back-wrapper .go-back .icon-back {
+    margin-right: 20px;
+    margin-left: 20px;
+    height: 50px;
+    width: 50px;
+    background: #fff;
+    color: #6d59d3;
+    display: flex;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 700;
+    transition: all 250ms ease-in-out;
+    cursor: pointer;
+}
+
+.back-wrapper .go-back .icon-back:active {
+    transform: scale(.9);
+}
+/* ----- Оболонка, яка відповідає за список юзерів в групі -----*/
+.outer-list-user-wrap {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	visibility: hidden;
+}
+
+.outer-list-user-wrap .shadow-list-user-wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .8);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: 0.2s ease;
+}
+
+.list-user-wrap {
+	position: absolute;
+	top: 55%;
+	left: 50%;
+	transform: translate(-50%, -800px);
+	width: 450px;
+	height: 600px;
+	border-radius: 20px;
+	background: #BD8ED3;
+	overflow: hidden;
+	transition: 0.5s ease;
+}
+
+.outer-list-user-wrap.active {
+	 visibility: visible;
+}
+.outer-list-user-wrap.active .shadow-list-user-wrap {
+	 opacity: 1;
+}
+
+.outer-list-user-wrap.active .list-user-wrap {
+	 transform: translate(-50%, -50%);
+}
+
+.list-user-wrap .photo-name-group {
+	position: relative;
+	width: 100%;
+	height: 200px;
+	/*background: blanchedalmond;*/
+	border-bottom: 2px solid #E0E0E0;
+	padding: 10px 5px;
+}
+
+.photo-name-group .update-photo-wrap {
+	position: absolute;
+	top: 3%;
+	left: 3%;
+	display: flex;
+}
+
+.update-photo-wrap form {
+	display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    justify-items: center; 
+}
+.update-photo-wrap img {
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.update-photo-wrap a {
+	width: 90%;
+	height: 40px;
+	border: 2px solid #fff;
+	background: #A14DC8;
+	border-radius: 30px;
+	color: #fff;
+	font-weight: 700;
+	margin: 10px;
+	padding: 7.5px;
+	text-align: center;
+	text-decoration: none;
+	transition: all 250ms ease-in-out;
+}
+
+.update-photo-wrap a:hover {
+	background: #fff;
+	color: #A14DC8;
+}
+
+.update-photo-wrap a:active{
+	 transform: scale(.9);
+}
+
+/*========================================*/
+.photo-name-group  .update-name-wrap {
+	position: absolute;
+	top: 5%;
+	left: 45%;
+	width: 45%;
+	display: flex;
+}
+
+.update-name-wrap form {
+	display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    justify-items: center; 
+}
+
+.update-name-wrap input {
+	width: 13rem;
+	height: 40px;
+	background: transparent;
+	border: none;
+	outline: none;
+	border-radius: 30px;
+	font-size: 16px;
+	padding: 5px;
+	margin: 10px 0 0 0;
+	transition: .2s;
+	text-align: center;
+	color: #fff;
+	font-weight: 700;
+	font-size: 16px;
+}
+
+.update-name-wrap a {
+	width: 90%;
+	height: 40px;
+	border: 2px solid #fff;
+	background: #A14DC8;
+	border-radius: 30px;
+	color: #fff;
+	font-weight: 700;
+	margin: 10px;
+	padding: 7.5px;
+	text-align: center;
+	text-decoration: none;
+	transition: all 250ms ease-in-out;
+}
+
+.update-name-wrap a:hover {
+	background: #fff;
+	color: #A14DC8;
+}
+
+.update-name-wrap a:active{
+	 transform: scale(.9);
+}
+
+.delete-btn {
+	position: absolute;
+	top: 70%;
+	left: 50%;
+	width: 35%;
+	height: 40px;
+	border: 2px solid #fff;
+	background: #A14DC8;
+	border-radius: 30px;
+	color: #fff;
+	font-weight: 700;
+	margin: 10px;
+	padding: 7.5px;
+	text-align: center;
+	text-decoration: none;
+	transition: all 250ms ease-in-out;
+}
+.delete-btn:hover,
+.exit-btn:hover {
+	background: #fff;
+	color: #A14DC8;
+}
+
+.exit-btn {
+	position: absolute;
+	top: 5%;
+	left: 50%;
+	width: 35%;
+	height: 40px;
+	border: 2px solid #fff;
+	background: #A14DC8;
+	border-radius: 30px;
+	color: #fff;
+	font-weight: 700;
+	margin: 10px;
+	padding: 7.5px;
+	text-align: center;
+	text-decoration: none;
+	transition: all 250ms ease-in-out;
+}
+
+.photo-name-group .form {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 60%;
+	height: 100%;
+	padding: 20px 5px;
+}
+.photo-name-group .form img {
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+}
+
+.photo-name-group .form h2 {
+	color: #fff;
+	font-weight: 700;
+}
+/* ----- Реалізація списку юзерів ----- */
+.list-user-wrap .list-users {
+	position: relative;
+	width: 100%;
+	height: 65%;
+	background: transparent;
+	overflow-y: scroll;
+}
+
+.list-users::-webkit-scrollbar {
+	width: 12px;
+}
+
+.list-users::-webkit-scrollbar-thumb {
+	background: linear-gradient(transparent, #fff);
+	border-radius: 6px;
+	transition: background 500ms ease-in-out;
+}
+
+.list-users::-webkit-scrollbar-thumb:hover {
+	background: linear-gradient(transparent, #BD0088);
+}
+
+.user-info {
+	position: relative;
+	margin: 10px 20px;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	background: rgba(255, 255, 255, .2);
+	border-radius: 20px;
+	display: flex;
+    align-items: stretch;
+    gap: .5rem;
+}
+
+.user-info img{
+	width: 90px;
+	height: 90px;
+	border-radius: 50%;
+	margin: 10px
+}
+
+.user-info h3 {
+	position: absolute;
+	left: 35%;
+	color: #fff;
+	font-size: 20px;
+	margin: 5% auto;
+}
+
+.user-info #offline {
+	position: absolute;
+	bottom: 30%;
+	left: 40%;
+	font-size: 18px;
+	font-weight: 700;
+	color: #FF5858;
+}
+
+.user-info #online {
+	position: absolute;
+	bottom: 30%;
+	left: 40%;
+	font-size: 18px;
+	font-weight: 700;
+	color: #6ADE76;
+}
+
+.user-info .option-else {
+	position: absolute;
+	top: 40%;
+	right: 2%;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.outer-option-user-wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	visibility: hidden;
+}
+
+
+ .outer-option-user-wrap .option-user {
+    position: fixed;
+    top: 55%;
+    right: 21%;
+    width: 200px;
+    height: 130px;
+    background: #BD8ED3;
+    border-radius: 20px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: .5rem;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.outer-option-user-wrap.active {
+	visibility: visible;
+}
+
+.outer-option-user-wrap.active  .option-user{
+	opacity: 1;
+    transform: translateY(0);
+ }
+
+.option-user a {
+	 text-decoration: none;
+	 width: 100%;
+	 height: 30px;
+	 border: 2px solid #fff;
+	 background: #A14DC8;
+	 color: #fff;
+	 border-radius: 15px;
+	 padding: 2px;
+	 text-align: center;
+	 margin: 2px 0;
+	 transition: all 250ms ease;
+ }
+ 
+.option-user a:hover {
+	 background: #fff;
+	 color: #A14DC8;
+ }
+ 
+ /* ------ Контейнер сообщений ------ */
+.container-messages {
+	position: absolute;
+	top: 52%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 45%;
+	height: 73%;
+	background: #516E89;
+	border: 2px solid rgba(255, 255, 255, .2);
+	border-radius: 20px;
+	/*backdrop-filter: blur(15px);*/
+	box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+	
+	display: flex;
+    flex-direction: column;
+	gap: 1rem;
+	overflow-y: scroll;
+	
+	padding: 10px 10px;
+ }
+ 
+.container-messages::-webkit-scrollbar {
+	display: none;
+}
+
+.container-messages h2 {
+	color: #E5E5E5;
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	font-size: 26px;
+	font-weight: 700;
+}
+
+.container-messages .my-messages {
+	 align-self: flex-end; 
+	 width: 300px;
+	 padding: 10px;
+	 background: #6D91AB;
+	 color: #fff;
+	 margin: 5px 0;
+	 padding: 5px 10px 10px 10px;
+	 border-radius: 10px;
+	 display: flex;
+     flex-direction: column;
+}
+
+.container-messages .other-messages {
+	 align-self: flex-start; 
+	 width: 300px;
+	 padding: 10px;
+	 background: #718A6C;
+	 color: #fff;
+	 margin: 5px 0;
+	 padding: 5px 10px 10px 10px;
+	 border-radius: 10px;
+	 display: flex;
+     flex-direction: column;
+}
+
+.my-messages .img-mes {
+	width: 180px;
+	height: 130px;
+	border: 2px solid #fff;
+	margin: 20px 20px;
+	cursor: pointer;
+}
+
+.other-messages .img-mes{
+	width: 180px;
+	height: 130px;
+	border: 2px solid #fff;
+	margin: 10px 10px 0 70px;
+	cursor: pointer;
+}
+
+.my-messages .file-sign {
+	border: none;
+	width: 60px;
+	height: 60px;
+	margin: 20px 20px;
+}
+
+.other-messages .file-sign{
+	border: none;
+	width: 60px;
+	height: 60px;
+	margin: 10px 10px 0 70px;
+}
+
+.my-messages .user-avatar {
+	position: absolute;
+	right: 2%;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+}
+
+.other-messages .user-avatar {
+	position: absolute;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+}
+
+.my-messages p {
+	font-size: 18px;
+	position: relative;
+	margin: 10px 60px 0 10px;
+}
+
+.my-messages .name {
+	font-weight: 700;
+	font-size: 15px;
+	margin: 0 0 0 20px;
+}
+
+.other-messages .name {
+	font-weight: 700;
+	font-size: 15px;
+	margin: 0 0 0 90px;
+}
+
+.other-messages p {
+	font-size: 18px;
+	position: relative;
+	margin: 10px 10px 0 70px;
+}
+
+.my-messages .time-message {
+	margin: 10px 10px 0;
+}
+
+.other-messages .time-message {
+	margin: 10px 10px 0 220px;
+}
+
+/* Реалізація контейнера відправлень повідомлень */
+.send-menu-wrap {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 35%;
+	height: 7%;
+	background: #516E89;
+	border: 2px solid rgba(255, 255, 255, .2);
+	border-radius: 20px;
+	/*backdrop-filter: blur(15px);*/
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.send-menu-wrap .add-file {
+	position: absolute;
+	left: 25px;
+	top: 10px;
+	height: 30px;
+	width: 30px;
+	border-radius: 5px;
+	background: transparent;
+	display: flex;
+	align-items: center;
+	justify-content: center;	
+	font-size: 28px;
+	cursor: pointer;
+	color: #fff;
+}
+
+.send-menu-wrap .add-smile {
+	position: absolute;
+	top: 10px;
+	right: 15%;
+	height: 30px;
+	width: 30px;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 28px;
+	cursor: pointer;
+	color: #fff;
+}
+
+.send-menu-wrap .send-message {
+	position: absolute;
+	top: 10px;
+	right: 8%;
+	height: 30px;
+	width: 30px;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 28px;
+	cursor: pointer;
+	color: #fff;
+}
+
+.send-menu-wrap .hidden-input {
+	display: none;
+}
+
+.send-menu-wrap input {
+	position: relative;
+	right: 5%;
+	width: 65%;
+	height: 80%;
+	border: 1px solid #6dacff;
+	border-radius: 5px;
+	font-size: 14px;
+	padding: 10px;
+	display: flex;
+	align-items: center;
+	color: #aaa;
+}
+
+.send-menu-wrap input:focus {
+	outline: none;
+}
+
+/* ----- Smile wrapper ----- */
+.wrapper-borders {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	visibility: hidden;
+}
+
+.wrapper-smile-out{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 20%;
+	height: 30%;
+	transform: translate(800px, -50%);
+	border-radius: 20px;
+	
+	background: transparent;
+	border: 2px solid rgba(255, 255, 255, .2);
+	backdrop-filter: blur(20px);
+	box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+	transition: 0.5s ease;
+}
+
+
+.wrapper-borders.active {
+	visibility: visible;
+}
+
+.wrapper-borders.active .wrapper-smile-out{
+	transform: translate(-50%, -50%);
+}
+
+.wrapper-smile-out .smile-window {
+	position: relative;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 90%;
+    background: blueviolet;
+    margin: 10px 15px;
+    border-radius: 20px;
+    overflow-y: scroll;
+    padding: 5px 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+ .smile-window::-webkit-scrollbar {
+	display: none;
+}
+
+ 
+.smile-window p {
+	cursor: pointer;
+	font-size:25px;
+	padding: 1.5px;
+	flex: 0 0 20%;
+    box-sizing: border-box; 
+}
+
+
+/* Модальне вікно - відправка текстового повідомлення/фото*/
+.modal-wrapper{
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+   visibility: hidden;
+}
+
+.modal-wrapper .shadow {
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .8);
+    opacity: 0;
+    transition: 0.2s ease;
+}
+
+.shadow .blob-window {
+	position: fixed;
+	top: 45%;
+	left: 50%;
+	width: 40%;
+	height: 65%;
+	background: #AA73A4;
+	transform: translate(-50%, -800px);
+	border-radius: 20px;
+	overflow: hidden;
+	transition: 0.5s ease;
+}
+
+.modal-wrapper.active {
+	 visibility: visible;
+}
+
+.modal-wrapper.active .shadow {
+	 opacity: 1;
+}
+
+.modal-wrapper.active .blob-window {
+	transform: translate(-50%, -50%);
+}
+
+.icon-close {
+    position: absolute;
+	top: 0;
+	right: 0;
+	width: 45px;
+	height: 45px;
+	background: #fff;
+	font-size: 2em;
+	color: #162938;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-bottom-left-radius: 20px;
+	cursor: pointer;
+}
+.blob-window h2 {
+	text-align: center;
+	color: #fff;
+	padding-top: 20px;
+}
+.blob-window img {
+	position: fixed;
+	top: 45%;
+	left: 50%;
+	border-radius: 20px;
+	transform: translate(-50%, -50%);
+	width: 450px;
+	height: 300px;
+	box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+}
+
+.blob-window .txt-preview {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.txt-preview span {
+	position: absolute;
+	top: 25%;
+	left: 0;
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;	
+    font-size: 32px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.txt-preview p {
+    color: #fff;
+    font-size: 24px;
+    padding: 0 0 0 30px;
+    margin: 0;
+}
+
+
+.blob-window .input-send {
+	position: fixed;
+	bottom: 3%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 300px;
+	height: 50px;
+	border-radius: 20px;
+	background: #9C4BB9;
+	border: none;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 700;
+	border: 2px solid #fff;
+	transition: all 250ms ease-in-out;
+}
+
+.input-send:hover {
+	background: #fff;
+	color: #9C4BB9;
+	border: 4px solid #9C4BB9;
+	box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+}

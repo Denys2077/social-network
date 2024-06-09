@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:element name="administrators">
+    <xsd:complexType>
+        <xsd:sequence>
+            <xsd:element name="administrator" 
+                         type="Administrator" 
+                         minOccurs="1" 
+                         maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:element>
+<xsd:complexType name="Administrator">
+    <xsd:sequence>
+         <xsd:element name="username" type="xsd:string"></xsd:element>
+         <xsd:element name="firstname" type="xsd:string"></xsd:element>
+         <xsd:element name="lastname" type="xsd:string"></xsd:element>
+         <xsd:element name="password" type="xsd:string"></xsd:element>
+         <xsd:element name="admin" type="xsd:boolean"></xsd:element>
+         <xsd:element name="contactInfo" type="ContactInfo"></xsd:element>
+         <xsd:element name="address" type="Address"></xsd:element>
+         <xsd:element name="birth" type="Birth"></xsd:element>
+         <xsd:element name="socialMedia" type="SocialMedia"></xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:positiveInteger" use="required"></xsd:attribute>
+</xsd:complexType>
+<xsd:complexType name="ContactInfo">
+    <xsd:sequence>
+        <xsd:element name="email" type="xsd:string" />
+        <xsd:element name="telephone" type="xsd:string" />
+        <xsd:element name="position" type="xsd:string" />
+        <xsd:element name="department" type="xsd:string" />
+    </xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="Address">
+    <xsd:sequence>
+        <xsd:element name="country" type="xsd:string"/>
+        <xsd:element name="city" type="xsd:string"/>
+        <xsd:element name="street" type="xsd:string" />
+    </xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="Birth">
+     <xsd:sequence>
+         <xsd:element name="sex" type="xsd:string"></xsd:element>
+         <xsd:element name="date" type="xsd:string"></xsd:element>
+     </xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="SocialMedia">
+    <xsd:sequence>
+        <xsd:element name="linkedInURL" type="xsd:string"></xsd:element>
+        <xsd:element name="instagramURL" type="xsd:string"></xsd:element>
+        <xsd:element name="facebookURL" type="xsd:string"></xsd:element>
+        <xsd:element name="telegramURL" type="xsd:string"></xsd:element>
+    </xsd:sequence>
+</xsd:complexType>
+</xsd:schema>

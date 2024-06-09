@@ -1,0 +1,51 @@
+user: adminMitarAlex02
+pass: adminAlexandro
+-------------------------
+user: adminPashkinKolya
+pass: adminKolyamba
+
+http://localhost:8080/DiplomaWork/index.jsp
+
+SQL
+
+$.post("sendmessage",{chat_id_db:<%= chat_id_db%>, message:message},function(){
+        			
+        		});
+-----------------------------------------------------------------------
+use socialnetwork;
+
+select * from user;
+select * from contactinfo;
+select * from address;
+select * from birth;
+select * from socialmedia;
+select * from chattwousers;
+select * from messageTwousers;
+/*
+insert into chattwousers(first_user_id, second_user_id) VALUES (7,9);
+insert into chattwousers(first_user_id, second_user_id) VALUES (7,10);*/
+/*insert into messageTwousers(chat_id, sender_id, message, message_time) VALUES (1, 7, 'Як у тебе справи?', NOW());*/
+/*insert into messageTwousers(chat_id, sender_id, message, message_time) VALUES (1, 8, 'Все чудово, а в тебе як?', NOW());*/
+/*drop table chattwousers;
+create table chattwousers (
+id INT PRIMARY KEY auto_increment, 
+first_user_id INT, 
+second_user_id INT, 
+FOREIGN KEY (first_user_id) REFERENCES user(id) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (second_user_id) REFERENCES user(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+create table messageTwousers (
+id INT PRIMARY KEY auto_increment,
+chat_id INT,
+sender_id INT,
+message TEXT,
+message_time DATETIME,
+FOREIGN KEY (chat_id) REFERENCES chattwousers(id) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (sender_id) REFERENCES user(id) ON DELETE CASCADE ON UPDATE CASCADE
+);*/
+
+$.post("createChat",{current_id:current_id_value, friend_id:friend_id_value,windowId:'<%= windowId %>'}, function(data, status){
+    		console.log("Created chat and moved to");
+    	});
+    }

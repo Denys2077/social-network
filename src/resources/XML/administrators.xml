@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+
+<administrators>
+    <administrator id="1">
+        <username>adminMitarAlex02</username>
+        <firstname>Alex</firstname>
+        <lastname>Mitar</lastname>
+        <password>adminAlexandro</password>
+        <admin>true</admin>
+        <contactInfo>
+            <email>mitar_alex0202@gmail.com</email>
+            <telephone>+380245647412</telephone>
+            <position>Analyst</position>
+            <department>IT</department>
+        </contactInfo>
+        <address>
+            <country>Ukraine</country>
+            <city>Dnipro</city>
+            <street>Topolya 3</street>
+        </address>
+        <birth>
+            <sex>male</sex>
+            <date>1999-02-02</date>
+        </birth>
+        <socialMedia>
+            <linkedInURL></linkedInURL>
+            <instagramURL></instagramURL>
+            <facebookURL></facebookURL>
+            <telegramURL>http://www.localhost.w2/telegram:id=123456798</telegramURL>
+        </socialMedia>
+    </administrator>
+    <!-- Administrator 2 -->
+    <administrator id="2">
+        <username>adminPashkinKolya</username>
+        <firstname>Kolya</firstname>
+        <lastname>Pashkin</lastname>
+        <password>adminKolyamba</password>
+        <admin>true</admin>
+        <contactInfo>
+            <email>kolya_developer@gmail.com</email>
+            <telephone>+380689512375</telephone>
+            <position>Back-End Senior Developer</position>
+            <department>IT</department>
+        </contactInfo>
+        <address>
+            <country>Ukraine</country>
+            <city>Dnipro</city>
+            <street>Donetske Shose 10</street>
+        </address>
+        <birth>
+            <sex>male</sex>
+            <date>1986-06-11</date>
+        </birth>
+        <socialMedia>
+            <linkedInURL>http://www.linkedIn.w4/linkedin:id=9643222</linkedInURL>
+            <instagramURL>http://www.instagram.w/instagram:id=129954</instagramURL>
+            <facebookURL></facebookURL>
+            <telegramURL>http://www.localhost.w2/telegram:id=4485984</telegramURL>
+        </socialMedia>
+    </administrator>
+</administrators>

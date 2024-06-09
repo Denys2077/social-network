@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!ELEMENT administrators (administrator+)>
+<!ELEMENT administrator (username, firstname, lastname, password, admin, contactInfo, address, birth, socialMedia)>
+<!ATTLIST administrator id CDATA #REQUIRED>
+<!ELEMENT username (#PCDATA)>
+<!ELEMENT firstname (#PCDATA)>
+<!ELEMENT lastname (#PCDATA)>
+<!ELEMENT password (#PCDATA)>
+<!ELEMENT admin (#PCDATA)>
+<!ELEMENT contactInfo (email, telephone, position, department)>
+<!ELEMENT address (country, city, street)>
+<!ELEMENT birth (sex, date)>
+<!ELEMENT socialMedia (linkedInURL, instagramURL, facebookURL, telegramURL)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT telephone (#PCDATA)>
+<!ELEMENT position (#PCDATA)>
+<!ELEMENT department (#PCDATA)>
+<!ELEMENT country (#PCDATA)>
+<!ELEMENT city (#PCDATA)>
+<!ELEMENT street (#PCDATA)>
+<!ELEMENT sex (#PCDATA)>
+<!ELEMENT date (#PCDATA)>
+<!ELEMENT linkedInURL (#PCDATA)>
+<!ELEMENT instagramURL (#PCDATA)>
+<!ELEMENT facebookURL (#PCDATA)>
+<!ELEMENT telegramURL (#PCDATA)>

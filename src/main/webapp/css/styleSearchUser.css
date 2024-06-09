@@ -1,0 +1,596 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background-image: url('files/background.png');
+	background-size: cover;
+	background-position: center;	
+}
+
+/* ----- Кнопка повернутися назад ----- */
+.back-wrapper {
+    position: fixed;
+    top: 1.2rem;
+    left: 4rem;
+    height: 100px;
+    width: 100px;
+}
+
+.back-wrapper .go-back {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 1px 1px 5px #6dacff;
+    backdrop-filter: blur(5px);
+}
+
+.back-wrapper .go-back .icon-back {
+    margin-right: 20px;
+    margin-left: 20px;
+    height: 50px;
+    width: 50px;
+    background: #fff;
+    color: #6d59d3;
+    display: flex;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 700;
+    transition: all 250ms ease-in-out;
+    cursor: pointer;
+}
+
+.back-wrapper .go-back .icon-back:active {
+    transform: scale(.9);
+}
+
+/* Реалізація блоку*/
+.wrapper {
+	position: relative;
+	width: 500px;
+	height: 700px;
+	background: transparent;
+	border: 2px solid rgba(255, 255, 255, 0.5);
+	border-radius: 20px;
+	backdrop-filter: blur(20px);
+	box-shadow: 0 0 30px rgba(0, 0, 0 .5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+
+.wrapper .form-box {
+	border-top: 2px solid rgba(255, 255, 255, 0.5);
+	width: 100%;
+	height: 90%;
+	margin: 4rem 0 0 0;
+	background: transparent;
+}
+
+.wrapper .form-box.contacts {
+	transition: transform .18s ease;
+	transform: translateX(0);
+}
+
+.wrapper.active .form-box.contacts {
+	transition: none;
+	transform: translateX(-500px);
+}
+
+.wrapper .form-box.users {
+	position: absolute;
+	transition: none;
+	transform: translateX(500px);
+}
+
+.wrapper.active .form-box.users {
+	transition: transform .18s ease;
+	transform: translateX(0);
+}
+
+
+.page-buttons {
+	position: absolute;
+	top: 0;
+	left: 25%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	gap: 1.5rem;
+	padding: 10px 0 10px 0;	
+}
+
+.page-buttons a {
+	 text-decoration: none;
+	 width: 120px;
+	 height: 40px;
+	 background: #FFE5FC;
+     border: 2px solid #fff;
+     color: #162938;
+     border-radius: 2px;
+	 display: flex;
+	 justify-content: center;
+	 align-items: center;
+	 cursor: pointer;
+	 transition: .5s;
+}
+
+.page-buttons a.active {
+	background: #B4A4B3;
+    color: #fff;
+}
+
+.page-buttons a:active {
+	 transform: scale(.98);
+}
+.page-buttons a:hover {
+    background: #B4A4B3;
+    color: #fff;
+}
+
+.form-box h2 {
+	text-align: center;
+	font-size: 2em;
+	color: #fff;
+	margin: 10px 0;
+}
+
+.form-box .search-menu {
+	position: relative;
+	top: 0;
+	left: 0;
+	display: flex;
+	flex-direction: column;
+	border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.search-menu h3 {
+	text-align: center;
+	font-size: 1.3em;
+	color: #fff;
+	margin: 5px 0;
+}
+
+.search-menu .input-box {
+	position: relative;
+	width: 100%;
+	height: 50px;
+	margin: 5px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;	
+}
+
+.input-box input {
+	width: 80%;
+	height: 80%;
+	background: transparent;
+	border: 2px solid #fff;
+	border-radius: 15px;
+	outline: none;
+	padding: 5px 20px;
+	font-size: 14px;
+	display: flex;
+	align-items: center;
+	color: #fff;
+	margin: 0 0 10px 0;
+}
+.input-box select {
+	width: 60%;
+	height: 70%;
+	background: transparent;
+	border: none;
+	outline: none;
+	font-size: 1em;
+	color: #fff;
+	font-weight: 600;
+	text-align: center;
+}
+
+.input-box option {
+    color: black;
+}
+.search-menu  .icon {
+	position: absolute;
+	height: 30px;
+	width: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 28px;
+	color: #fff;
+	transform: translateY(-4px);
+	right: 10px;
+}
+
+/* Реалізація стилів для контейнеру contact-list */
+.form-box .contact-list {
+	position: absolute;
+	width: 100%;
+	height: 60%;
+	flex-direction: column;
+	overflow-y: scroll;
+	align-items: center;
+	gap: 1rem;
+}
+
+.form-box .contact-list::-webkit-scrollbar {
+	display: none;
+}
+
+.user-info-contact,
+.user-info-users {
+	position: relative;
+	width: 90%;
+	max-width: 100%;
+	color: #fff;
+	padding: 10px 10px;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	background: rgba(255, 255, 255, .2);
+	border-radius: 16px;
+	display: flex;
+    align-items: stretch;
+    gap: .5rem;
+    cursor: pointer;
+    margin: 10px 25px;
+}
+
+.user-info-contact img,
+.user-info-users img {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+}
+
+.user-info-contact .user-message,
+.user-info-users .user-message {
+	width: 70%;
+	height: 95%;
+	/*background: red;*/
+}
+
+.user-info-contact .user-message h3,
+.user-info-contact .user-message h4,
+.user-info-users .user-message h3,
+.user-info-users .user-message h4
+{
+    margin: 8px 5px;
+}
+
+/* Створення картки, в якому буде відображено добавити в /видалити з контактів і написати повідомлення */
+.card {
+     position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+}
+
+.card .shadow-card {
+	 position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .8);
+    opacity: 0;
+    transition: 0.2s ease;
+}
+
+.shadow-card .user-wrap {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -800px);
+	width: 500px;
+	height: 350px;
+	border-radius: 20px;
+	background: lightpink;
+	overflow: hidden;
+}
+
+.card.active {
+    visibility: visible;
+}
+
+.card.active .shadow-card{
+    opacity: 1;
+}
+
+.card.active .user-wrap.active{
+    transform: translate(-50%, -50%);
+}
+
+
+.user-wrap .icon-close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 45px;
+	width: 45px;
+	background: #fff;
+	border-bottom: 2px solid #162938;border-left: 2px solid #162938;
+	font-size: 2em;
+	color: #162938;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-bottom-left-radius: 20px;
+	cursor: pointer;
+}
+
+.user-wrap img {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	margin: 25px;
+	border: 2px solid #162938;
+}
+
+.user-wrap h2 {
+	font-size: 32px;
+	color: #fff;
+	margin: 0 25px 10px; 
+}
+
+.user-wrap .btns-act {
+	position: absolute;
+	top: 30%;
+	right: 5%;
+	height: 40%;
+	width: 45%;
+}
+
+.btns-act button {
+	width: 100%;
+	height: 35%;
+	margin: 10px 0;
+	border: none;
+	
+	text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.btns-act button:hover {
+	background: #fff;
+    color: #6d59d3;
+}
+/*================================*/
+.card-dont-contact {
+     position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+}
+
+.card-dont-contact .shadow-card-contact {
+	 position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .8);
+    opacity: 0;
+    transition: 0.2s ease;
+}
+
+.shadow-card-contact .contact-wrap {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -800px);
+	width: 500px;
+	height: 350px;
+	border-radius: 20px;
+	background: lightpink;
+	overflow: hidden;
+}
+
+.card-dont-contact.active {
+    visibility: visible;
+}
+
+.card-dont-contact.active .shadow-card-contact{
+    opacity: 1;
+}
+
+.card-dont-contact.active .contact-wrap.active{
+    transform: translate(-50%, -50%);
+}
+
+
+.card-dont-contact .icon-close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 45px;
+	width: 45px;
+	background: #fff;
+	border-bottom: 2px solid #162938;border-left: 2px solid #162938;
+	font-size: 2em;
+	color: #162938;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-bottom-left-radius: 20px;
+	cursor: pointer;
+}
+
+.card-dont-contact img {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	margin: 25px;
+	border: 2px solid #162938;
+}
+
+.card-dont-contact h2 {
+	font-size: 32px;
+	color: #fff;
+	margin: 0 25px 10px; 
+}
+
+.card-dont-contact .btns-act {
+	position: absolute;
+	top: 30%;
+	right: 5%;
+	height: 40%;
+	width: 45%;
+}
+
+/* Модульне вікно, яке відповідає за відображення списку груп */
+.group-wrap-out {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	visibility: hidden;
+}
+
+.group-wrap-out .group-wrap-shadow {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+    background: rgba(0, 0, 0, .8);
+    opacity: 0;
+    transition: 0.2s ease;
+}
+
+.group-wrap-shadow .group-wrap-window {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    height: 75%;
+    transform: translate(-50%, -800px);
+    background: lightpink;
+    padding: 10px;
+    border-radius: 5px;
+    transition: 0.5s ease;
+}
+
+.group-wrap-out.active {
+	visibility: visible;
+}
+
+.group-wrap-out.active .group-wrap-shadow {
+	opacity: 1;
+}
+
+.group-wrap-out.active .group-wrap-window {
+	 transform: translate(-50%, -50%);
+}
+.group-wrap-window h2 {
+	color: #fff;
+	font-size: 25px;
+	font-weight: 700;
+	margin: 10px 0 5px 0;
+	text-align: center;
+}
+.group-wrap-window .menu-search {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	background: transparent;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 10px 0 40px 0;
+}
+
+.menu-search input {
+	width: 80%;
+	height: 80%;
+	background: transparent;
+	border: 2px solid #fff;
+	border-radius: 15px;
+	outline: none;
+	padding: 5px 20px;
+	font-size: 14px;
+	display: flex;
+	align-items: center;
+	color: #fff;
+	margin: 0 0 10px 0;
+}
+
+.group-wrap-window .group-list {
+	position: relative;
+	width: 100%;
+	height: 70%;
+	display: flex;
+	flex-direction: column;
+	overflow-y: scroll;
+	align-items: center;
+	gap: 1rem;
+}
+
+.group-list::-webkit-scrollbar {
+	display: none;
+}
+
+.group-list .group-style {
+	width: 85%;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	background: rgba(255, 255, 255, .2);
+	border-radius: 16px;
+	display: flex;
+    align-items: stretch;
+    gap: .5rem;
+    cursor: pointer;
+}
+
+.group-style img {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	margin: 10px;
+}
+
+.group-style h3 {
+	position: relative;
+	font-size: 1.4em;
+	color: #fff;
+	margin: auto;
+	text-align: center;
+}
+.group-style span {
+	margin: auto;
+	color: #fff;
+	text-align: center;
+}
